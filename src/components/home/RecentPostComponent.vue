@@ -1,17 +1,17 @@
 <template>
-    <q-item class="recent-post-component">
-        <div top class="post-header q-mx-md">
-            <div class="left-side">
+    <q-item style="background-color: white;" class="recent-post-component">
+        <div top class="post-header q-mx-md q-my-md">
+            <div @click="navigateTo('/1')" style="cursor: pointer;" class="left-side">
                 <q-item-section avatar>
-                    <q-avatar>
+                    <q-avatar size="3em">
                         <img src="https://cdn.quasar.dev/img/avatar2.jpg">
                     </q-avatar>
                 </q-item-section>
-                <q-item-section>
-                    <q-item-label>Itumeleng</q-item-label>
+                <q-item-section >
+                    <q-item-label class="username text-weight-medium text-grey-9">Itumeleng</q-item-label>
                 </q-item-section>
             </div>
-            <q-btn round color="black" flat size="1.3em" icon="more_horiz" />
+            <q-btn @click="showPopUP" round color="black" flat size="1.1em" icon="more_horiz" />
         </div>
         <q-img
             src="https://cdn.quasar.dev/img/parallax2.jpg"
@@ -34,27 +34,50 @@
                 <q-icon name="sentiment_satisfied" />
             </template>
             <template v-slot:after>
-                <q-btn round color="primary" flat label="Post" />
+                <q-btn round color="primary" flat label="Post" :disable="!text" />
             </template>
         </q-input>
     </q-item>
 </template>
 
 <script>
+
+    import {mapMutations} from 'vuex'
     export default {
-        name: 'RecentPostComponent'
+        name: 'RecentPostComponent',
+        data() {
+            return {
+                text: ''
+            }
+        },
+        methods: {
+            ...mapMutations(['showAlert']),
+            showPopUP(){
+                this.showAlert(true)
+            },
+            navigateTo(page){
+                 this.$router.push({
+                    path: page
+                })
+            },
+        }
     }
 </script>
 
 <style lang="scss" scoped>
 
+    .username {
+        font-size: 1.37em;
+    }
+
     .recent-post-component {
         border: 1px solid rgba(190, 190, 190, 0.562);
-        max-width: 700px;
+        max-width: 750px;
         display: flex;
         flex-direction: column;
         padding: 0;
         margin: 1.4em 0 3em;
+        border-radius: .3em;
     }
 
     .top-border {

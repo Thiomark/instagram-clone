@@ -1,5 +1,5 @@
 <template>
-    <q-btn round color="black" flat icon="favorite_border" >
+    <q-btn round color="black" size="1.4em" flat icon="favorite_border" >
         <q-menu auto-close fit>
                 <q-list style="min-width: 380px" class="q-mr-md">
                     <FollowNotiComponent />
